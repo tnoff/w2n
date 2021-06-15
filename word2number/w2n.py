@@ -55,10 +55,12 @@ def number_formation(number_words: List[str]) -> int:
         numbers.append(AMERICAN_NUMBER_SYSTEM[number_word])
     if len(numbers) == 4:
         return (numbers[0] * numbers[1]) + numbers[2] + numbers[3]
+    elif len(numbers) == 3 and numbers[2] == 100:
+        return (numbers[0] + numbers[1]) * numbers[2]
     elif len(numbers) == 3:
         return numbers[0] * numbers[1] + numbers[2]
     elif len(numbers) == 2:
-        if 100 in numbers:
+        if 100 == numbers[1]:
             return numbers[0] * numbers[1]
         else:
             return numbers[0] + numbers[1]

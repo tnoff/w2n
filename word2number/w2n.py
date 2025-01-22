@@ -82,7 +82,7 @@ def get_decimal_sum(decimal_digit_words: List[str]) -> float:
     final_decimal_string = '0.' + ''.join(map(str,decimal_number_str))
     return float(final_decimal_string)
 
-def word_to_num(number_sentence: str) -> Union[int, float]:
+def word_to_num(number_sentence: str) -> Union[int, float, None]:
     """
     function to return integer for an input `number_sentence` string
     input: string

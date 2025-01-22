@@ -1,5 +1,4 @@
-from __future__ import print_function
-
+from typing import List, Union
 
 american_number_system = {
     'zero': 0,
@@ -39,55 +38,14 @@ american_number_system = {
 
 decimal_words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
-"""
-#TODO
-indian_number_system = {
-    'zero': 0,
-    'one': 1,
-    'two': 2,
-    'three': 3,
-    'four': 4,
-    'five': 5,
-    'six': 6,
-    'seven': 7,
-    'eight': 8,
-    'nine': 9,
-    'ten': 10,
-    'eleven': 11,
-    'twelve': 12,
-    'thirteen': 13,
-    'fourteen': 14,
-    'fifteen': 15,
-    'sixteen': 16,
-    'seventeen': 17,
-    'eighteen': 18,
-    'nineteen': 19,
-    'twenty': 20,
-    'thirty': 30,
-    'forty': 40,
-    'fifty': 50,
-    'sixty': 60,
-    'seventy': 70,
-    'eighty': 80,
-    'ninety': 90,
-    'hundred': 100,
-    'thousand': 1000,
-    'lac': 100000,
-    'lakh': 100000,
-    'crore': 10000000
-}
-"""
 
+def number_formation(number_words: List[str]) -> int:
+    '''
+    function to form numeric multipliers for million, billion, thousand etc.
 
-"""
-function to form numeric multipliers for million, billion, thousand etc.
-
-input: list of strings
-return value: integer
-"""
-
-
-def number_formation(number_words):
+    input: list of strings
+    return value: integer
+    '''
     numbers = []
     for number_word in number_words:
         numbers.append(american_number_system[number_word])
@@ -103,15 +61,12 @@ def number_formation(number_words):
     else:
         return numbers[0]
 
-
-"""
-function to convert post decimal digit words to numerial digits
-input: list of strings
-output: double
-"""
-
-
-def get_decimal_sum(decimal_digit_words):
+def get_decimal_sum(decimal_digit_words: List[str]) -> float:
+    '''
+    function to convert post decimal digit words to numerial digits
+    input: list of strings
+    output: double
+    '''
     decimal_number_str = []
     for dec_word in decimal_digit_words:
         if(dec_word not in decimal_words):
@@ -121,15 +76,12 @@ def get_decimal_sum(decimal_digit_words):
     final_decimal_string = '0.' + ''.join(map(str,decimal_number_str))
     return float(final_decimal_string)
 
-
-"""
-function to return integer for an input `number_sentence` string
-input: string
-output: int or double or None
-"""
-
-
-def word_to_num(number_sentence):
+def word_to_num(number_sentence: str) -> Union[int, float]:
+    """
+    function to return integer for an input `number_sentence` string
+    input: string
+    output: int or double or None
+    """
     if type(number_sentence) is not str:
         raise ValueError("Type of input is not string! Please enter a valid number word (eg. \'two million twenty three thousand and forty nine\')")
 

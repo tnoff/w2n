@@ -3,3 +3,6 @@
 .idlerc/
 .pypirc
 *.pyc
+.coverage
+.tox/
+*egg-info*

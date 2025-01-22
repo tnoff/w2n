@@ -1,6 +1,6 @@
 from typing import List, Union
 
-american_number_system = {
+AMERICAN_NUMBER_SYSTEM = {
     'zero': 0,
     'one': 1,
     'two': 2,
@@ -36,8 +36,12 @@ american_number_system = {
     'point': '.'
 }
 
-decimal_words = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+DECIMAL_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
 
+# Accept that these characters might be included and basically ignore
+ACCEPTED_WORDS = [
+    ',', '&', 'and',
+]
 
 def number_formation(number_words: List[str]) -> int:
     '''
@@ -48,7 +52,7 @@ def number_formation(number_words: List[str]) -> int:
     '''
     numbers = []
     for number_word in number_words:
-        numbers.append(american_number_system[number_word])
+        numbers.append(AMERICAN_NUMBER_SYSTEM[number_word])
     if len(numbers) == 4:
         return (numbers[0] * numbers[1]) + numbers[2] + numbers[3]
     elif len(numbers) == 3:
@@ -69,10 +73,10 @@ def get_decimal_sum(decimal_digit_words: List[str]) -> float:
     '''
     decimal_number_str = []
     for dec_word in decimal_digit_words:
-        if(dec_word not in decimal_words):
-            return 0
+        if(dec_word not in DECIMAL_WORDS):
+            raise ValueError(f'Invalid decimal word given "{dec_word}"')
         else:
-            decimal_number_str.append(american_number_system[dec_word])
+            decimal_number_str.append(AMERICAN_NUMBER_SYSTEM[dec_word])
     final_decimal_string = '0.' + ''.join(map(str,decimal_number_str))
     return float(final_decimal_string)
 
@@ -98,8 +102,11 @@ def word_to_num(number_sentence: str) -> Union[int, float]:
 
     # removing and, & etc.
     for word in split_words:
-        if word in american_number_system:
+        if word in AMERICAN_NUMBER_SYSTEM:
             clean_numbers.append(word)
+            continue
+        if word not in ACCEPTED_WORDS:
+            raise ValueError(f'Found portion of string that is not supported "{word}"')
 
     # Error message if the user enters invalid input!
     if len(clean_numbers) == 0:
@@ -126,7 +133,7 @@ def word_to_num(number_sentence: str) -> Union[int, float]:
     if len(clean_numbers) > 0:
         # hack for now, better way TODO
         if len(clean_numbers) == 1:
-                total_sum += american_number_system[clean_numbers[0]]
+                total_sum += AMERICAN_NUMBER_SYSTEM[clean_numbers[0]]
 
         else:
             if billion_index > -1:

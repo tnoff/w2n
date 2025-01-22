@@ -16,27 +16,23 @@ def test_positives():
    assert w2n.word_to_num('11211234') ==  11211234
    assert w2n.word_to_num('five') ==  5
    assert w2n.word_to_num('two million twenty three thousand and forty nine') ==  2023049
+   print('-------------------------------------------------------')
    assert w2n.word_to_num('two point three') ==  2.3
    assert w2n.word_to_num('two million twenty three thousand and forty nine point two three six nine') == 2023049.2369
    assert w2n.word_to_num('one billion two million twenty three thousand and forty nine point two three six nine') == 1002023049.2369
    assert w2n.word_to_num('point one') ==  0.1
    assert w2n.word_to_num('point') ==  0
-   assert w2n.word_to_num('point nineteen') ==  0
    assert w2n.word_to_num('one hundred thirty-five') ==  135
    assert w2n.word_to_num('hundred') ==  100
    assert w2n.word_to_num('thousand') ==  1000
    assert w2n.word_to_num('million') ==  1000000
    assert w2n.word_to_num('billion') ==  1000000000
    assert w2n.word_to_num('nine point nine nine nine') ==  9.999
-   assert w2n.word_to_num('seventh point nineteen') ==  0
 
 def test_negatives():
-    with pytest.raises(ValueError) as exc:
-        w2n.word_to_num('112-')
-    assert 'No valid number words found! Please enter a valid number word' in str(exc.value)
-
-    for word in ['-', 'on', 'million million', 'three million million', 'million four million',
-                 'thousand million', 'one billion point two million twenty three thousand and forty nine point two three six nine', 112]:
+    for word in ['112-', '-', 'on', 'million million', 'three million million', 'million four million',
+                 'thousand million', 'one billion point two million twenty three thousand and forty nine point two three six nine',
+                 'twothousand and one', 'seven point nineteen', 'point nineteen', 112]:
         with pytest.raises(ValueError) as exc:
             w2n.word_to_num(word)
         assert str(exc.value)

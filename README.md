@@ -53,6 +53,13 @@ print(w2n.word_to_num('blah'))
 Error: No valid number words found! Please enter a valid number word (eg. two million twenty three thousand and forty nine)
 None
 ```
+
+### Decimals
+
+It is assumed that any decimals are given use each individual number written out.
+
+For example, for `2.19`, write out `two point one nine` instead of `two point nineteen`
+
 ## Bugs/Errors
 
 Please ensure that you have updated pip to the latest version before installing word2number.

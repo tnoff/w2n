@@ -28,6 +28,7 @@ def test_positives():
    assert w2n.word_to_num('million') ==  1000000
    assert w2n.word_to_num('billion') ==  1000000000
    assert w2n.word_to_num('nine point nine nine nine') ==  9.999
+   assert w2n.word_to_num('five thousand, six hundred') ==  5600
 
 def test_negatives():
     for word in ['112-', '-', 'on', 'million million', 'three million million', 'million four million',

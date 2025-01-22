@@ -40,7 +40,7 @@ DECIMAL_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 
 
 # Accept that these characters might be included and basically ignore
 ACCEPTED_WORDS = [
-    ',', '&', 'and',
+    '', 'and',
 ]
 
 def number_formation(number_words: List[str]) -> int:
@@ -100,8 +100,9 @@ def word_to_num(number_sentence: str) -> Union[int, float]:
     clean_numbers = []
     clean_decimal_numbers = []
 
-    # removing and, & etc.
     for word in split_words:
+        # Remove some common characters
+        word = word.replace(',', '').replace('&', '')
         if word in AMERICAN_NUMBER_SYSTEM:
             clean_numbers.append(word)
             continue
